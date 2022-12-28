@@ -1,0 +1,14 @@
+.profile__avatar {
+    margin: 41px auto 18px;
+    border-radius: 50%;
+    grid-column-start: 2;
+}
+
+@media screen and (min-width: 1080px) {
+    .profile__avatar {
+        grid-column-start: 1;
+        grid-row-start: span 2;  
+        margin: 0;
+        align-self: center;
+    }
+}

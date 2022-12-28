@@ -1,0 +1,16 @@
+.button__edit {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #FFFFFF;
+    align-self: center;
+    background-image: url(../../../images/edit\ symbol.svg);
+}
+
+@media screen and (min-width: 1080px) {
+    .button__edit {
+        width: 24px;
+        height: 24px;
+        align-self: end;
+        margin-bottom: 11px;
+    }
+}

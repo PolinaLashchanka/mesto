@@ -1,0 +1,15 @@
+.button__add {
+    width: 282px;
+    height: 50px;
+    margin: 34px auto;
+    border: 2px solid #FFFFFF;
+    background-image: url(../../../images/add\ symbol.svg);
+    }
+
+@media screen and (min-width: 1080px) {
+    .button__add {
+        width: 150px;
+        height: 50px;
+        margin: 75px 0 85px;
+    }
+}

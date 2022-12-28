@@ -1,0 +1,6 @@
+.button__heart-image {
+    background-image: url(../../../images/heart\ symbol.svg);
+    border: none;
+    width: 30px;
+    margin-left: 10px;
+}
