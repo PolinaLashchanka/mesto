@@ -5,70 +5,72 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./pages/index.css">
-    <title>Mesto</title>
+    <title>Место</title>
 </head>
 <body class="body">
     <div class="page">
         <header class="header">
             <img class="header__logo" src="./images/logo.svg" alt="логотип Место Россия">
         </header>
-        <div class="profile">
-            <div class="profile__info">
-                <img class="profile__avatar" src="./images/Avatar.jpg" alt="фотография пользователя">
-                <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <p class="profile__description">Исследователь океана</p>
-                <button class="button profile__edit-button"></button>
-            </div>
-            <button class="button profile__add-button"></button>
-        </div>
-        <div class="photo-grid">
-            <div class="photo-grid__card">
-                <img class="photo-grid__image" src="./images/Altai.jpg" alt="картинка Республики Алтай">
-                <div class="photo-grid__caption">
-                    <h2 class="photo-grid__text">Алтай</h2>
-                    <button class="button photo-grid__heart-button"></button>
+        <main class="content">
+            <section class="profile">
+                <div class="profile__info">
+                    <img class="profile__avatar" src="./images/Avatar.jpg" alt="фотография пользователя">
+                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <p class="profile__description">Исследователь океана</p>
+                    <button class="button profile__edit-button"></button>
                 </div>
-            </div>
-            <div class="photo-grid__card">
-                <img class="photo-grid__image" src="./images/Baikal.jpg" alt="картинка Озера Байкал">
-                <div class="photo-grid__caption">
-                    <h2 class="photo-grid__text">Байкал</h2>
-                    <button class="button photo-grid__heart-button"></button>
+                <button class="button profile__add-button"></button>
+            </section>
+            <section class="photo-grid">
+                <div class="photo-grid__card">
+                    <img class="photo-grid__image" src="./images/Altai.jpg" alt="картинка Республики Алтай">
+                    <div class="photo-grid__caption">
+                        <h2 class="photo-grid__text">Алтай</h2>
+                        <button class="button photo-grid__heart-button"></button>
+                    </div>
                 </div>
-            </div>
-            <div class="photo-grid__card">
-                <img class="photo-grid__image" src="./images/Elbrus.jpg" alt="картинка вулкана Эльбрус">
-                <div class="photo-grid__caption">
-                    <h2 class="photo-grid__text">Эльбрус</h2>
-                    <button class="button photo-grid__heart-button"></button>
+                <div class="photo-grid__card">
+                    <img class="photo-grid__image" src="./images/Baikal.jpg" alt="картинка Озера Байкал">
+                    <div class="photo-grid__caption">
+                        <h2 class="photo-grid__text">Байкал</h2>
+                        <button class="button photo-grid__heart-button"></button>
+                    </div>
                 </div>
-            </div>
-            <div class="photo-grid__card">
-                <img class="photo-grid__image" src="./images/Irkutsk.jpg" alt="картинка города Иркутск">
-                <div class="photo-grid__caption">
-                    <h2 class="photo-grid__text">Иркутск</h2>
-                    <button class="button photo-grid__heart-button"></button>
+                <div class="photo-grid__card">
+                    <img class="photo-grid__image" src="./images/Elbrus.jpg" alt="картинка вулкана Эльбрус">
+                    <div class="photo-grid__caption">
+                        <h2 class="photo-grid__text">Эльбрус</h2>
+                        <button class="button photo-grid__heart-button"></button>
+                    </div>
                 </div>
-            </div>
-            <div class="photo-grid__card">
-                <img class="photo-grid__image" src="./images/Karelia.jpg" alt="картинка Республики Карелия">
-                <div class="photo-grid__caption">
-                    <h2 class="photo-grid__text">Карелия</h2>
-                    <button class="button photo-grid__heart-button"></button>
+                <div class="photo-grid__card">
+                    <img class="photo-grid__image" src="./images/Irkutsk.jpg" alt="картинка города Иркутск">
+                    <div class="photo-grid__caption">
+                        <h2 class="photo-grid__text">Иркутск</h2>
+                        <button class="button photo-grid__heart-button"></button>
+                    </div>
                 </div>
-            </div>
-            <div class="photo-grid__card">
-                <img class="photo-grid__image" src="./images/Olkhon.jpg" alt="картинка острова Ольхон">
-                <div class="photo-grid__caption">
-                    <h2 class="photo-grid__text">Ольхон</h2>
-                    <button class="button photo-grid__heart-button"></button>
+                <div class="photo-grid__card">
+                    <img class="photo-grid__image" src="./images/Karelia.jpg" alt="картинка Республики Карелия">
+                    <div class="photo-grid__caption">
+                        <h2 class="photo-grid__text">Карелия</h2>
+                        <button class="button photo-grid__heart-button"></button>
+                    </div>
                 </div>
-            </div>
-        </div>
+                <div class="photo-grid__card">
+                    <img class="photo-grid__image" src="./images/Olkhon.jpg" alt="картинка острова Ольхон">
+                    <div class="photo-grid__caption">
+                        <h2 class="photo-grid__text">Ольхон</h2>
+                        <button class="button photo-grid__heart-button"></button>
+                    </div>
+                </div>
+            </section>
+        </main>
         <footer class="footer">
-            <h2 class="footer__text">© 2022 Mesto Russia</h2>
+            <p class="footer__text">© 2022 Mesto Russia</p>
         </footer>
-        <section class="popup">
+        <div class="popup">
             <div class="popup__container">
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form class="form">
@@ -78,7 +80,7 @@
                 </form>
                 <button class="button popup__close-button"></button>
             </div>
-        </section>
+        </div>
     </div>
     <script src="./scripts/index.js"></script>
 </body>
