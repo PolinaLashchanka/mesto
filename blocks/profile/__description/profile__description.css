@@ -6,6 +6,10 @@
     text-align: center;
     grid-column-start: 2;
     grid-row-start: 3;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 190px;
 }
 
 @media screen and (min-width: 1080px) {
@@ -15,5 +19,6 @@
         margin-left: 12px;
         font-size: 18px;
         line-height: 22px;
+        max-width: 300px;
     }
 }
