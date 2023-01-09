@@ -6,6 +6,11 @@
     margin-top: 45px;
     font-size: 14px;
     line-height: 17px;
+    border-radius: 2px;
+}
+
+.form__submit-button:hover {
+    opacity: 80%;
 }
 
 @media screen and (min-width: 768px) {

@@ -4,6 +4,11 @@
     border: 1px solid #FFFFFF;
     align-self: center;
     background-image: url(../../../images/edit\ symbol.svg);
+    background-size: 7.5px 7.5px;
+}
+
+.profile__edit-button:hover {
+    opacity: 60%;
 }
 
 @media screen and (min-width: 1080px) {
@@ -12,5 +17,6 @@
         height: 24px;
         align-self: end;
         margin-bottom: 11px;
+        background-size: 10px 10px;
     }
 }

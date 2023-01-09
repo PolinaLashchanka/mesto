@@ -6,7 +6,3 @@
     cursor: pointer;
     transition: opacity 1s;
 }
-
-.button:hover {
-    opacity: 60%;
-}

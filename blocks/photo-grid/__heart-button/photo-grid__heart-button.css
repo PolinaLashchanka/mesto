@@ -4,3 +4,7 @@
     width: 30px;
     margin-left: 10px;
 }
+
+.photo-grid__heart-button:hover {
+    opacity: 50%;
+}
