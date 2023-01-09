@@ -29,7 +29,7 @@ function handleFormSubmit (evt) {
     evt.preventDefault();
     profileNameElement.textContent = nameInput.value;
     profileDescriptionElement.textContent = descriptionInput.value;
-    popupElement.classList.remove('popup_opened')
+    removePopupVisibility();
 }
 formElement.addEventListener('submit', handleFormSubmit); 
 
