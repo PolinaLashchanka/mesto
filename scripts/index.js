@@ -1,39 +1,53 @@
-const popupElement = document.querySelector('.popup');
-const popupCloseButtonElement = popupElement.querySelector('.popup__close-button');
-const popupOpenButtonElement = document.querySelector('.profile__edit-button');
-const formElement = popupElement.querySelector('.form');
-const nameInput = formElement.querySelector('.form__item_user_name');
-const descriptionInput = formElement.querySelector('.form__item_user_description');
+const popupEditElement = document.querySelector('.popup-edit');
+const popupEditCloseButtonElement = popupEditElement.querySelector('.popup__close-button');
+const popupOpenEditButtonElement = document.querySelector('.profile__edit-button');
+const editFormElement = popupEditElement.querySelector('.form');
+const nameInput = editFormElement.querySelector('.form__item_user_name');
+const descriptionInput = editFormElement.querySelector('.form__item_user_description');
 const profileNameElement = document.querySelector('.profile__name');
 const profileDescriptionElement = document.querySelector('.profile__description');
 
 
-
-const addPopupVisibility = function() {
-    popupElement.classList.add('popup_opened');
+const addEditPopupVisibility = function() {
+    popupEditElement.classList.add('popup_opened');
     nameInput.value = profileNameElement.textContent;
     descriptionInput.value = profileDescriptionElement.textContent;
 }
 
-popupOpenButtonElement.addEventListener('click', addPopupVisibility);
+popupOpenEditButtonElement.addEventListener('click', addEditPopupVisibility);
 
-const removePopupVisibility = function() {
+const removeVisibility = function(popupElement) {
     popupElement.classList.remove('popup_opened');
 }
 
-popupCloseButtonElement.addEventListener('click', removePopupVisibility);
+popupEditCloseButtonElement.addEventListener('click', () => removeVisibility(popupEditElement));
 
-
-
-function handleFormSubmit (evt) {
+function handleEditFormSubmit (evt) {
     evt.preventDefault();
     profileNameElement.textContent = nameInput.value;
     profileDescriptionElement.textContent = descriptionInput.value;
-    removePopupVisibility();
+    removeVisibility(popupEditElement);
+};
+
+editFormElement.addEventListener('submit', handleEditFormSubmit); 
+
+
+
+
+const popupAddElement = document.querySelector('.popup-add');
+const popupAddCloseButtonElement = popupAddElement.querySelector('.popup__close-button');
+const popupOpenAddButtonElement= document.querySelector('.profile__add-button');
+const addFormElement = popupAddElement.querySelector('.form');
+const cardNameInput = addFormElement.querySelector('.form__item_card_name');
+const cardImageInput = addFormElement.querySelector('.form__item_card_image');
+
+
+const addCardAddPopupVisibility = function() {
+    popupAddElement.classList.add('popup_opened');
 }
-formElement.addEventListener('submit', handleFormSubmit); 
+popupOpenAddButtonElement.addEventListener('click', addCardAddPopupVisibility);
 
-
+popupAddCloseButtonElement.addEventListener('click', () => removeVisibility(popupAddElement));
 
 
 
@@ -78,12 +92,24 @@ const initialCards = [
   };
 
   const renderCard = (cardName, cardImage) => {
-    photoGrid.append(createCard(cardName, cardImage));
+    photoGrid.prepend(createCard(cardName, cardImage));
   }
 
   initialCards.forEach((item) => {
     renderCard(item.name, item.link);
   });
+
+
+
+  function handleAddFormSubmit (evt) {
+    evt.preventDefault();
+    const cardName = cardNameInput.value;
+    const cardImage = cardImageInput.value;
+    renderCard(cardName, cardImage);
+    removeVisibility(popupAddElement);
+};
+
+addFormElement.addEventListener('submit', handleAddFormSubmit); 
 
 
 
