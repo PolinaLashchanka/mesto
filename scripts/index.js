@@ -81,6 +81,7 @@ const initialCards = [
 
   const photoGrid = document.querySelector('.photo-grid');
   const template = document.querySelector('#template-card');
+  
 
 
 
@@ -88,6 +89,13 @@ const initialCards = [
     const card = template.content.querySelector('.photo-grid__card').cloneNode(true);
     card.querySelector('.photo-grid__text').textContent = cardName;
     card.querySelector('.photo-grid__image').src = cardImage;
+
+    const likeButton = card.querySelector('.photo-grid__heart-button');
+    const likeHeartButton = function () {
+        likeButton.classList.toggle('button_active');
+    };
+
+    likeButton.addEventListener('click', likeHeartButton);
     return card;
   };
 
@@ -110,6 +118,7 @@ const initialCards = [
 };
 
 addFormElement.addEventListener('submit', handleAddFormSubmit); 
+
 
 
 
