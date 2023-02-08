@@ -1,4 +1,4 @@
-const popupEditElement = document.querySelector('.popup__edit-profile');
+const popupEditElement = document.querySelector('.popup_edit-profile');
 const popupEditCloseButtonElement = popupEditElement.querySelector('.popup__close-button');
 const popupOpenEditButtonElement = document.querySelector('.profile__edit-button');
 const editFormElement = popupEditElement.querySelector('.form');
@@ -32,7 +32,7 @@ function handleEditFormSubmit (evt) {
 editFormElement.addEventListener('submit', handleEditFormSubmit); 
 
 
-const popupAddElement = document.querySelector('.popup__add-card');
+const popupAddElement = document.querySelector('.popup_add-card');
 const popupAddCloseButtonElement = popupAddElement.querySelector('.popup__close-button');
 const popupOpenAddButtonElement= document.querySelector('.profile__add-button');
 const addFormElement = popupAddElement.querySelector('.form');
@@ -68,7 +68,7 @@ popupAddCloseButtonElement.addEventListener('click', () => removeVisibility(popu
     })
 
 
-    const popupOpenImage = document.querySelector('.popup__open-image');
+    const popupOpenImage = document.querySelector('.popup_open-image');
     const popupImage = popupOpenImage.querySelector('.popup__image');
     const popupCaption = popupOpenImage.querySelector('.popup__caption');
     const popupImageCloseButton = popupOpenImage.querySelector('.popup__close-button');
@@ -88,34 +88,6 @@ popupAddCloseButtonElement.addEventListener('click', () => removeVisibility(popu
   const renderCard = (cardName, cardImage) => {
     photoGrid.prepend(createCard(cardName, cardImage));
   }
-
-  const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ]; 
-
 
   initialCards.forEach((item) => {
     renderCard(item.name, item.link);
