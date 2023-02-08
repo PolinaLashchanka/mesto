@@ -5,6 +5,7 @@
     margin: 0 auto 20px;
     width: 282px;
     overflow: hidden;
+    position: relative;
 }
 
 @media screen and (min-width: 768px) {

@@ -1,4 +1,4 @@
-const popupEditElement = document.querySelector('.popup-edit');
+const popupEditElement = document.querySelector('.popup__edit-profile');
 const popupEditCloseButtonElement = popupEditElement.querySelector('.popup__close-button');
 const popupOpenEditButtonElement = document.querySelector('.profile__edit-button');
 const editFormElement = popupEditElement.querySelector('.form');
@@ -32,9 +32,7 @@ function handleEditFormSubmit (evt) {
 editFormElement.addEventListener('submit', handleEditFormSubmit); 
 
 
-
-
-const popupAddElement = document.querySelector('.popup-add');
+const popupAddElement = document.querySelector('.popup__add-card');
 const popupAddCloseButtonElement = popupAddElement.querySelector('.popup__close-button');
 const popupOpenAddButtonElement= document.querySelector('.profile__add-button');
 const addFormElement = popupAddElement.querySelector('.form');
@@ -94,8 +92,28 @@ const initialCards = [
     const likeHeartButton = function () {
         likeButton.classList.toggle('button_active');
     };
-
     likeButton.addEventListener('click', likeHeartButton);
+
+    const deleteButton = card.querySelector('.photo-grid__card_delete-button');
+    deleteButton.addEventListener('click', () => {
+        card.remove();
+    })
+
+
+    const popupOpenImage = document.querySelector('.popup__open-image');
+    const popupImage = popupOpenImage.querySelector('.popup__image');
+    const popupCaption = popupOpenImage.querySelector('.popup__caption');
+    const popupImageCloseButton = popupOpenImage.querySelector('.popup__close-button');
+
+    const openCardImage = card.querySelector('.photo-grid__image');
+    openCardImage.addEventListener('click', () => {
+        popupOpenImage.classList.add('popup_opened');
+        popupImage.src = cardImage;
+        popupCaption.textContent = cardName;
+    });
+
+    popupImageCloseButton.addEventListener('click', () => removeVisibility(popupOpenImage));
+
     return card;
   };
 
@@ -115,7 +133,9 @@ const initialCards = [
     const cardImage = cardImageInput.value;
     renderCard(cardName, cardImage);
     removeVisibility(popupAddElement);
-};
+    cardNameInput.value = '';
+    cardImageInput.value = '';
+  };
 
 addFormElement.addEventListener('submit', handleAddFormSubmit); 
 

@@ -1,0 +1,9 @@
+.photo-grid__card_delete-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.photo-grid__card_delete-button:hover {
+    opacity: 60%;
+}
