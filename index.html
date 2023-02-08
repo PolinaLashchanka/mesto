@@ -22,55 +22,12 @@
                 </div>
                 <button class="button profile__add-button" type="button" aria-label="Добавить"></button>
             </section>
-            <section class="photo-grid">
-                <div class="photo-grid__card">
-                    <img class="photo-grid__image" src="./images/Altai.jpg" alt="картинка Республики Алтай">
-                    <div class="photo-grid__caption">
-                        <h2 class="photo-grid__text">Алтай</h2>
-                        <button class="button photo-grid__heart-button" type="button" aria-label="Лайк"></button>
-                    </div>
-                </div>
-                <div class="photo-grid__card">
-                    <img class="photo-grid__image" src="./images/Baikal.jpg" alt="картинка Озера Байкал">
-                    <div class="photo-grid__caption">
-                        <h2 class="photo-grid__text">Байкал</h2>
-                        <button class="button photo-grid__heart-button" type="button" aria-label="Лайк"></button>
-                    </div>
-                </div>
-                <div class="photo-grid__card">
-                    <img class="photo-grid__image" src="./images/Elbrus.jpg" alt="картинка вулкана Эльбрус">
-                    <div class="photo-grid__caption">
-                        <h2 class="photo-grid__text">Эльбрус</h2>
-                        <button class="button photo-grid__heart-button" type="button" aria-label="Лайк"></button>
-                    </div>
-                </div>
-                <div class="photo-grid__card">
-                    <img class="photo-grid__image" src="./images/Irkutsk.jpg" alt="картинка города Иркутск">
-                    <div class="photo-grid__caption">
-                        <h2 class="photo-grid__text">Иркутск</h2>
-                        <button class="button photo-grid__heart-button" type="button" aria-label="Лайк"></button>
-                    </div>
-                </div>
-                <div class="photo-grid__card">
-                    <img class="photo-grid__image" src="./images/Karelia.jpg" alt="картинка Республики Карелия">
-                    <div class="photo-grid__caption">
-                        <h2 class="photo-grid__text">Карелия</h2>
-                        <button class="button photo-grid__heart-button" type="button" aria-label="Лайк"></button>
-                    </div>
-                </div>
-                <div class="photo-grid__card">
-                    <img class="photo-grid__image" src="./images/Olkhon.jpg" alt="картинка острова Ольхон">
-                    <div class="photo-grid__caption">
-                        <h2 class="photo-grid__text">Ольхон</h2>
-                        <button class="button photo-grid__heart-button" type="button" aria-label="Лайк"></button>
-                    </div>
-                </div>
-            </section>
+            <section class="photo-grid"></section>
         </main>
         <footer class="footer">
             <p class="footer__text">© 2022 Mesto Russia</p>
         </footer>
-        <div class="popup">
+        <div class="popup popup__edit-profile">
             <div class="popup__container">
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form class="form" name="userInfo">
@@ -81,7 +38,36 @@
                 <button class="button popup__close-button" type="button" aria-label="Закрыть"></button>
             </div>
         </div>
+        <div class="popup popup__add-card">
+            <div class="popup__container">
+                <h2 class="popup__title">Новое место</h2>
+                <form class="form" name="cardInfo">
+                    <input class="form__item form__item_card_name" type="text" name="cardName" placeholder="Название">
+                    <input class="form__item form__item_card_image" type="text" name="cardImage" placeholder="Ссылка на картинку">
+                    <input class="button form__submit-button" type="submit" value="Создать">
+                </form>
+                <button class="button popup__close-button" type="button" aria-label="Закрыть"></button>
+            </div>
+        </div>
+        <div class="popup popup__open-image">
+            <div class="popup__image-container">
+                <img class="popup__image">
+                <h2 class="popup__caption"></h2>
+                <button class="button popup__close-button" type="button" aria-label="Закрыть"></button>
+            </div>
+        </div>
     </div>
+    <template id="template-card">
+        <div class="photo-grid__card">
+            <img class="photo-grid__image">
+            <img class="button photo-grid__card_delete-button" src="./images/delete button.svg">
+            <div class="photo-grid__caption">
+                <h2 class="photo-grid__text"></h2>
+                <button class="button photo-grid__heart-button" type="button" aria-label="Лайк"></button>
+            </div>
+        </div>
+    </template>
+    <script src="./scripts/constants.js"></script>
     <script src="./scripts/index.js"></script>
 </body>
 </html>
