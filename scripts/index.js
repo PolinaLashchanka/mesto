@@ -58,7 +58,7 @@ popupAddCloseButtonElement.addEventListener('click', () => removeVisibility(popu
 
     const likeButton = card.querySelector('.photo-grid__heart-button');
     const likeHeartButton = function () {
-        likeButton.classList.toggle('button_active');
+        likeButton.classList.toggle('photo-grid__heart-button_active');
     };
     likeButton.addEventListener('click', likeHeartButton);
 
