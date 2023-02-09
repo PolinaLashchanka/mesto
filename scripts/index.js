@@ -8,17 +8,20 @@ const profileNameElement = document.querySelector('.profile__name');
 const profileDescriptionElement = document.querySelector('.profile__description');
 
 
-const addEditPopupVisibility = function() {
-    popupEditElement.classList.add('popup_opened');
-    nameInput.value = profileNameElement.textContent;
-    descriptionInput.value = profileDescriptionElement.textContent;
+const addVisibility = function(popupElement) {
+  popupElement.classList.add('popup_opened');
 }
-
-popupOpenEditButtonElement.addEventListener('click', addEditPopupVisibility);
 
 const removeVisibility = function(popupElement) {
-    popupElement.classList.remove('popup_opened');
+  popupElement.classList.remove('popup_opened');
 }
+
+
+popupOpenEditButtonElement.addEventListener('click', () => {
+    addVisibility(popupEditElement);
+    nameInput.value = profileNameElement.textContent;
+    descriptionInput.value = profileDescriptionElement.textContent;
+});
 
 popupEditCloseButtonElement.addEventListener('click', () => removeVisibility(popupEditElement));
 
@@ -40,10 +43,7 @@ const cardNameInput = addFormElement.querySelector('.form__item_card_name');
 const cardImageInput = addFormElement.querySelector('.form__item_card_image');
 
 
-const addCardAddPopupVisibility = function() {
-    popupAddElement.classList.add('popup_opened');
-}
-popupOpenAddButtonElement.addEventListener('click', addCardAddPopupVisibility);
+popupOpenAddButtonElement.addEventListener('click', () => addVisibility(popupAddElement));
 
 popupAddCloseButtonElement.addEventListener('click', () => removeVisibility(popupAddElement));
 
@@ -75,7 +75,7 @@ popupAddCloseButtonElement.addEventListener('click', () => removeVisibility(popu
 
     const openCardImage = card.querySelector('.photo-grid__image');
     openCardImage.addEventListener('click', () => {
-        popupOpenImage.classList.add('popup_opened');
+        addVisibility(popupOpenImage);
         popupImage.src = cardImage;
         popupCaption.textContent = cardName;
     });
