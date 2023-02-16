@@ -33,13 +33,20 @@ const popupImageCloseButton = popupOpenImage.querySelector(
 const photoGrid = document.querySelector(".photo-grid");
 const template = document.querySelector("#template-card");
 
+const removeVisibility = function (popupElement) {
+  popupElement.classList.remove("popup_opened");
+};
+
 const addVisibility = function (popupElement) {
   popupElement.classList.add("popup_opened");
 };
 
-const removeVisibility = function (popupElement) {
-  popupElement.classList.remove("popup_opened");
-};
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    removeVisibility(popupEditElement);
+    removeVisibility(popupAddElement);
+  }
+});
 
 const likeHeartButton = function (button) {
   button.classList.toggle("photo-grid__heart-button_active");
@@ -52,9 +59,9 @@ function handleEditFormSubmit(evt) {
   removeVisibility(popupEditElement);
 }
 
-const removeElement = function(element) {
+const removeElement = function (element) {
   element.remove();
-}
+};
 
 const createCard = (cardName, cardImage) => {
   const card = template.content
@@ -102,10 +109,18 @@ function handleAddFormSubmit(evt) {
   evt.target.reset();
 }
 
-popupOpenEditButtonElement.addEventListener("click", () => {
+function closePopupByClickOnOverlay(event) {
+  console.log(event.target, event.currentTarget);
+  if (event.target === event.currentTarget) {
+    removeVisibility(event.currentTarget);
+  }
+}
+
+popupOpenEditButtonElement.addEventListener("click", (ev) => {
   addVisibility(popupEditElement);
   nameInput.value = profileNameElement.textContent;
   descriptionInput.value = profileDescriptionElement.textContent;
+  ev.stopPropagation();
 });
 
 popupEditCloseButtonElement.addEventListener("click", () =>
@@ -127,3 +142,9 @@ popupImageCloseButton.addEventListener("click", () =>
 );
 
 addFormElement.addEventListener("submit", handleAddFormSubmit);
+
+popupEditElement.addEventListener("click", closePopupByClickOnOverlay);
+
+popupAddElement.addEventListener("click", closePopupByClickOnOverlay);
+
+popupOpenImage.addEventListener("click", closePopupByClickOnOverlay);
