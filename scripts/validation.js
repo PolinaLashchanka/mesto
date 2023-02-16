@@ -1,7 +1,7 @@
 const formValidationConfig = {
   formSelector: ".form",
   inputSelector: ".form__item",
-  errorClass: "form__item_error_visible",
+  errorClass: "popup__error_visible",
   submitButtonSelector: ".form__submit-button",
   inactiveButtonClass: "form__submit-button_disabled",
   inputErrorClass: "form__item_type_error",

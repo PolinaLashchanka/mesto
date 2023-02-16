@@ -110,7 +110,6 @@ function handleAddFormSubmit(evt) {
 }
 
 function closePopupByClickOnOverlay(event) {
-  console.log(event.target, event.currentTarget);
   if (event.target === event.currentTarget) {
     removeVisibility(event.currentTarget);
   }
