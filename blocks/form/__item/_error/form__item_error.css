@@ -1,0 +1,4 @@
+.form__item_error {
+    display: block;
+    min-height: 15px;
+}

@@ -35,3 +35,10 @@
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__caption/popup__caption.css);
 @import url(../blocks/popup/__image-container/popup__image-container.css);
+
+
+
+@import url(../blocks/form/__item/_error/form__item_error.css);
+@import url(../blocks/form/__item/_error/_visible/form__item_error_visible.css);
+@import url(../blocks/form/__item/_type/_error/form__item_type_error.css);
+@import url(../blocks/form/__submit-button/_disabled/form__submit-button_disabled.css);
