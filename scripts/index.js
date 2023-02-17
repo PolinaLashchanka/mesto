@@ -33,6 +33,14 @@ const popupImageCloseButton = popupOpenImage.querySelector(
 const photoGrid = document.querySelector(".photo-grid");
 const template = document.querySelector("#template-card");
 
+
+function closePopupByEscButton (event) {
+  const openedPopup = document.querySelector('.popup_opened');
+  if (event.key === "Escape") {
+    removeVisibility(openedPopup);
+  }
+};
+
 const removeVisibility = function (popupElement) {
   popupElement.classList.remove("popup_opened");
   document.removeEventListener("keydown", closePopupByEscButton);
@@ -41,13 +49,6 @@ const removeVisibility = function (popupElement) {
 const addVisibility = function (popupElement) {
   popupElement.classList.add("popup_opened");
   document.addEventListener("keydown", closePopupByEscButton);
-};
-
-function closePopupByEscButton (event) {
-  const openedPopup = document.querySelector('.popup_opened');
-  if (event.key === "Escape") {
-    removeVisibility(openedPopup);
-  }
 };
 
 const handleLikeButtonKlick = function (button) {
@@ -65,14 +66,14 @@ const removeElement = function (element) {
   element.remove();
 };
 
-const createCard = (cardName, cardImage) => {
+const createCard = (cardData) => {
   const card = template.content
     .querySelector(".photo-grid__card")
     .cloneNode(true);
   const cardPic = card.querySelector(".photo-grid__image");
-  card.querySelector(".photo-grid__text").textContent = cardName;
-  cardPic.src = cardImage;
-  cardPic.alt = cardName;
+  card.querySelector(".photo-grid__text").textContent = cardData.name;
+  cardPic.src = cardData.link;
+  cardPic.alt = cardData.name;
 
   const likeButton = card.querySelector(".photo-grid__heart-button");
   likeButton.addEventListener("click", () => handleLikeButtonKlick(likeButton));
@@ -82,21 +83,21 @@ const createCard = (cardName, cardImage) => {
 
   cardPic.addEventListener("click", () => {
     addVisibility(popupOpenImage);
-    popupImage.src = cardImage;
-    popupCaption.textContent = cardName;
-    popupImage.alt = cardName;
+    popupImage.src = cardData.link;
+    popupCaption.textContent = cardData.name;
+    popupImage.alt = cardData.name;
   });
 
   return card;
 };
 
-const renderCard = (cardName, cardImage, cardsContainer) => {
-  cardsContainer.prepend(createCard(cardName, cardImage));
+const renderCard = (cardData, cardsContainer) => {
+  cardsContainer.prepend(createCard(cardData));
 };
 
 const renderCards = (container, cards) => {
   cards.forEach((item) => {
-    renderCard(item.name, item.link, container);
+    renderCard(item, container);
   });
 };
 
@@ -106,7 +107,7 @@ function handleAddFormSubmit(evt) {
   evt.preventDefault();
   const cardName = cardNameInput.value;
   const cardImage = cardImageInput.value;
-  renderCard(cardName, cardImage, photoGrid);
+  renderCard({name: cardName, link: cardImage}, photoGrid);
   removeVisibility(popupAddElement);
   evt.target.reset();
   evt.submitter.classList.add('form__submit-button_disabled');

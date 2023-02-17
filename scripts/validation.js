@@ -36,12 +36,11 @@ function addInputListeners(form, config) {
   });
 }
 
-function toggleButton(form, config) {
-  const buttonSubmit = form.querySelector(config.submitButtonSelector);
+function toggleButton(form, submitButton, config) {
   const isFormValid = form.checkValidity();
 
-  buttonSubmit.disabled = !isFormValid;
-  buttonSubmit.classList.toggle(config.inactiveButtonClass, !isFormValid);
+  submitButton.disabled = !isFormValid;
+  submitButton.classList.toggle(config.inactiveButtonClass, !isFormValid);
 };
 
 function enableValidation(config) {
@@ -52,9 +51,10 @@ function enableValidation(config) {
   });
 
   function enableFormValidation(form, config) {
+    const submitButton = form.querySelector(config.submitButtonSelector);
     form.addEventListener("submit", disableSubmit);
     form.addEventListener("input", () => {
-      toggleButton(form, config);
+      toggleButton(form, submitButton, config);
     });
 
     addInputListeners(form, config);
