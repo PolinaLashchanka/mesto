@@ -42,7 +42,7 @@ function toggleButton(form, config) {
 
   buttonSubmit.disabled = !isFormValid;
   buttonSubmit.classList.toggle(config.inactiveButtonClass, !isFormValid);
-}
+};
 
 function enableValidation(config) {
   const formList = Array.from(document.querySelectorAll(config.formSelector));

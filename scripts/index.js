@@ -5,9 +5,9 @@ const popupEditCloseButtonElement = popupEditElement.querySelector(
 const popupOpenEditButtonElement = document.querySelector(
   ".profile__edit-button"
 );
-const editFormElement = popupEditElement.querySelector(".form");
-const nameInput = editFormElement.querySelector(".form__item_user_name");
-const descriptionInput = editFormElement.querySelector(
+const popupEditFormElement = popupEditElement.querySelector(".form");
+const nameInput = popupEditFormElement.querySelector(".form__item_user_name");
+const descriptionInput = popupEditFormElement.querySelector(
   ".form__item_user_description"
 );
 const profileNameElement = document.querySelector(".profile__name");
@@ -21,9 +21,9 @@ const popupAddCloseButtonElement = popupAddElement.querySelector(
 const popupOpenAddButtonElement = document.querySelector(
   ".profile__add-button"
 );
-const addFormElement = popupAddElement.querySelector(".form");
-const cardNameInput = addFormElement.querySelector(".form__item_card_name");
-const cardImageInput = addFormElement.querySelector(".form__item_card_image");
+const popupAddFormElement = popupAddElement.querySelector(".form");
+const cardNameInput = popupAddFormElement.querySelector(".form__item_card_name");
+const cardImageInput = popupAddFormElement.querySelector(".form__item_card_image");
 const popupOpenImage = document.querySelector(".popup_open-image");
 const popupImage = popupOpenImage.querySelector(".popup__image");
 const popupCaption = popupOpenImage.querySelector(".popup__caption");
@@ -35,20 +35,22 @@ const template = document.querySelector("#template-card");
 
 const removeVisibility = function (popupElement) {
   popupElement.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closePopupByEscButton);
 };
 
 const addVisibility = function (popupElement) {
   popupElement.classList.add("popup_opened");
+  document.addEventListener("keydown", closePopupByEscButton);
 };
 
-document.addEventListener("keydown", (event) => {
+function closePopupByEscButton (event) {
+  const openedPopup = document.querySelector('.popup_opened');
   if (event.key === "Escape") {
-    removeVisibility(popupEditElement);
-    removeVisibility(popupAddElement);
+    removeVisibility(openedPopup);
   }
-});
+};
 
-const likeHeartButton = function (button) {
+const handleLikeButtonKlick = function (button) {
   button.classList.toggle("photo-grid__heart-button_active");
 };
 
@@ -73,7 +75,7 @@ const createCard = (cardName, cardImage) => {
   cardPic.alt = cardName;
 
   const likeButton = card.querySelector(".photo-grid__heart-button");
-  likeButton.addEventListener("click", () => likeHeartButton(likeButton));
+  likeButton.addEventListener("click", () => handleLikeButtonKlick(likeButton));
 
   const deleteButton = card.querySelector(".photo-grid__card_delete-button");
   deleteButton.addEventListener("click", () => removeElement(card));
@@ -107,6 +109,7 @@ function handleAddFormSubmit(evt) {
   renderCard(cardName, cardImage, photoGrid);
   removeVisibility(popupAddElement);
   evt.target.reset();
+  evt.submitter.classList.add('form__submit-button_disabled');
 }
 
 function closePopupByClickOnOverlay(event) {
@@ -126,7 +129,7 @@ popupEditCloseButtonElement.addEventListener("click", () =>
   removeVisibility(popupEditElement)
 );
 
-editFormElement.addEventListener("submit", handleEditFormSubmit);
+popupEditFormElement.addEventListener("submit", handleEditFormSubmit);
 
 popupOpenAddButtonElement.addEventListener("click", () =>
   addVisibility(popupAddElement)
@@ -140,7 +143,7 @@ popupImageCloseButton.addEventListener("click", () =>
   removeVisibility(popupOpenImage)
 );
 
-addFormElement.addEventListener("submit", handleAddFormSubmit);
+popupAddFormElement.addEventListener("submit", handleAddFormSubmit);
 
 popupEditElement.addEventListener("click", closePopupByClickOnOverlay);
 
