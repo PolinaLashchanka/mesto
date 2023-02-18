@@ -111,6 +111,7 @@ function handleAddFormSubmit(evt) {
   removeVisibility(popupAddElement);
   evt.target.reset();
   evt.submitter.classList.add('form__submit-button_disabled');
+  evt.submitter.disabled = true;
 }
 
 function closePopupByClickOnOverlay(event) {
