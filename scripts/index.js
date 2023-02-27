@@ -1,4 +1,6 @@
 import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
 
 const initialCards = [
   {
@@ -26,6 +28,22 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ]; 
+
+
+const formValidationConfig = {
+  formSelector: ".form",
+  inputSelector: ".form__item",
+  errorClass: "popup__error_visible",
+  submitButtonSelector: ".form__submit-button",
+  inactiveButtonClass: "form__submit-button_disabled",
+  inputErrorClass: "form__item_type_error",
+};
+
+const editForm = document.querySelector('.popup__form_edit');
+const addForm = document.querySelector('.popup__form_add');
+
+new FormValidator(formValidationConfig, editForm).enableValidation();
+new FormValidator(formValidationConfig, addForm).enableValidation();
 
 
 
@@ -57,8 +75,6 @@ const popupAddFormElement = popupAddElement.querySelector(".form");
 const cardNameInput = popupAddFormElement.querySelector(".form__item_card_name");
 const cardImageInput = popupAddFormElement.querySelector(".form__item_card_image");
 const popupOpenImage = document.querySelector(".popup_open-image");
-// const popupImage = popupOpenImage.querySelector(".popup__image");
-// const popupCaption = popupOpenImage.querySelector(".popup__caption");
 const popupImageCloseButton = popupOpenImage.querySelector(
   ".popup__close-button"
 );
@@ -83,7 +99,7 @@ const addVisibility = function (popupElement) {
   document.addEventListener("keydown", closePopupByEscButton);
 };
 
-document.addEventListener("keydown", closePopupByEscButton);
+// document.addEventListener("keydown", closePopupByEscButton);
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
@@ -91,35 +107,6 @@ function handleEditFormSubmit(evt) {
   profileDescriptionElement.textContent = descriptionInput.value;
   removeVisibility(popupEditElement);
 }
-
-
-
-
-
-// const createCard = (cardData) => {
-//   const card = template.content
-//     .querySelector(".photo-grid__card")
-//     .cloneNode(true);
-//   const cardPic = card.querySelector(".photo-grid__image");
-//   card.querySelector(".photo-grid__text").textContent = cardData.name;
-//   cardPic.src = cardData.link;
-//   cardPic.alt = cardData.name;
-
-//   const likeButton = card.querySelector(".photo-grid__heart-button");
-//   likeButton.addEventListener("click", () => handleLikeButtonKlick(likeButton));
-
-//   const deleteButton = card.querySelector(".photo-grid__card_delete-button");
-//   deleteButton.addEventListener("click", () => removeElement(card));
-
-//   cardPic.addEventListener("click", () => {
-//     addVisibility(popupOpenImage);
-//     popupImage.src = cardData.link;
-//     popupCaption.textContent = cardData.name;
-//     popupImage.alt = cardData.name;
-//   });
-
-//   return card;
-// };
 
 const renderCard = (cardData, cardsContainer) => {
   const newCard = new Card(cardData, template);
@@ -133,8 +120,6 @@ const renderCards = (container, cards) => {
 };
 
 renderCards(photoGrid, initialCards);
-
-
 
 
 function handleAddFormSubmit(evt) {

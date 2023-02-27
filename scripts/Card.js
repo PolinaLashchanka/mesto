@@ -15,6 +15,11 @@ class Card {
       this._popupImage.alt = this._name;
     };
 
+   _removeVisibility() {
+      this._popupOpenImage.classList.remove("popup_opened");
+      document.removeEventListener("keydown", (event) => this._closePopupByEscButton(event));
+    };
+
     _handleLikeButtonKlick() {
       this._likeButton.classList.toggle("photo-grid__heart-button_active");
     };
@@ -23,12 +28,21 @@ class Card {
       element.remove();
     };
 
+    _closePopupByEscButton(event) {
+      // this._openedPopup = document.querySelector('.popup_opened');
+      if (event.key === "Escape") {
+        this._removeVisibility();
+      }
+    };
+
     _addEventListeners() {
       this._cardPic.addEventListener("click", () => this._addVisibility());
 
       this._likeButton.addEventListener("click", () => this._handleLikeButtonKlick());
 
       this._deleteButton.addEventListener("click", () => this._removeElement(this._card));
+
+      document.addEventListener("keydown", (event) => this._closePopupByEscButton(event));
 
     }
 
