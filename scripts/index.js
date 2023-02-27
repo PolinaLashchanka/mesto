@@ -1,3 +1,35 @@
+import Card from './Card.js';
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+]; 
+
+
+
+
 const popupEditElement = document.querySelector(".popup_edit-profile");
 const popupEditCloseButtonElement = popupEditElement.querySelector(
   ".popup__close-button"
@@ -25,8 +57,8 @@ const popupAddFormElement = popupAddElement.querySelector(".form");
 const cardNameInput = popupAddFormElement.querySelector(".form__item_card_name");
 const cardImageInput = popupAddFormElement.querySelector(".form__item_card_image");
 const popupOpenImage = document.querySelector(".popup_open-image");
-const popupImage = popupOpenImage.querySelector(".popup__image");
-const popupCaption = popupOpenImage.querySelector(".popup__caption");
+// const popupImage = popupOpenImage.querySelector(".popup__image");
+// const popupCaption = popupOpenImage.querySelector(".popup__caption");
 const popupImageCloseButton = popupOpenImage.querySelector(
   ".popup__close-button"
 );
@@ -51,9 +83,7 @@ const addVisibility = function (popupElement) {
   document.addEventListener("keydown", closePopupByEscButton);
 };
 
-const handleLikeButtonKlick = function (button) {
-  button.classList.toggle("photo-grid__heart-button_active");
-};
+document.addEventListener("keydown", closePopupByEscButton);
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
@@ -62,37 +92,38 @@ function handleEditFormSubmit(evt) {
   removeVisibility(popupEditElement);
 }
 
-const removeElement = function (element) {
-  element.remove();
-};
 
-const createCard = (cardData) => {
-  const card = template.content
-    .querySelector(".photo-grid__card")
-    .cloneNode(true);
-  const cardPic = card.querySelector(".photo-grid__image");
-  card.querySelector(".photo-grid__text").textContent = cardData.name;
-  cardPic.src = cardData.link;
-  cardPic.alt = cardData.name;
 
-  const likeButton = card.querySelector(".photo-grid__heart-button");
-  likeButton.addEventListener("click", () => handleLikeButtonKlick(likeButton));
 
-  const deleteButton = card.querySelector(".photo-grid__card_delete-button");
-  deleteButton.addEventListener("click", () => removeElement(card));
 
-  cardPic.addEventListener("click", () => {
-    addVisibility(popupOpenImage);
-    popupImage.src = cardData.link;
-    popupCaption.textContent = cardData.name;
-    popupImage.alt = cardData.name;
-  });
+// const createCard = (cardData) => {
+//   const card = template.content
+//     .querySelector(".photo-grid__card")
+//     .cloneNode(true);
+//   const cardPic = card.querySelector(".photo-grid__image");
+//   card.querySelector(".photo-grid__text").textContent = cardData.name;
+//   cardPic.src = cardData.link;
+//   cardPic.alt = cardData.name;
 
-  return card;
-};
+//   const likeButton = card.querySelector(".photo-grid__heart-button");
+//   likeButton.addEventListener("click", () => handleLikeButtonKlick(likeButton));
+
+//   const deleteButton = card.querySelector(".photo-grid__card_delete-button");
+//   deleteButton.addEventListener("click", () => removeElement(card));
+
+//   cardPic.addEventListener("click", () => {
+//     addVisibility(popupOpenImage);
+//     popupImage.src = cardData.link;
+//     popupCaption.textContent = cardData.name;
+//     popupImage.alt = cardData.name;
+//   });
+
+//   return card;
+// };
 
 const renderCard = (cardData, cardsContainer) => {
-  cardsContainer.prepend(createCard(cardData));
+  const newCard = new Card(cardData, template);
+  cardsContainer.prepend(newCard.createCard());
 };
 
 const renderCards = (container, cards) => {
@@ -102,6 +133,9 @@ const renderCards = (container, cards) => {
 };
 
 renderCards(photoGrid, initialCards);
+
+
+
 
 function handleAddFormSubmit(evt) {
   evt.preventDefault();
