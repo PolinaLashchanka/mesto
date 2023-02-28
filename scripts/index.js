@@ -11,8 +11,8 @@ const formValidationConfig = {
   inputErrorClass: "form__item_type_error",
 };
 
-const editForm = document.querySelector(".popup__form_edit");
-const addForm = document.querySelector(".popup__form_add");
+const editForm = document.querySelector(".popup__edit-form");
+const addForm = document.querySelector(".popup__add-form");
 
 new FormValidator(formValidationConfig, editForm).enableValidation();
 new FormValidator(formValidationConfig, addForm).enableValidation();
