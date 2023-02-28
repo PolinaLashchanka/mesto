@@ -1,3 +1,23 @@
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+import initialCards from "./constants.js";
+
+const formValidationConfig = {
+  formSelector: ".form",
+  inputSelector: ".form__item",
+  errorClass: "popup__error_visible",
+  submitButtonSelector: ".form__submit-button",
+  inactiveButtonClass: "form__submit-button_disabled",
+  inputErrorClass: "form__item_type_error",
+};
+
+const editForm = document.querySelector(".popup__form_edit");
+const addForm = document.querySelector(".popup__form_add");
+
+new FormValidator(formValidationConfig, editForm).enableValidation();
+new FormValidator(formValidationConfig, addForm).enableValidation();
+
+
 const popupEditElement = document.querySelector(".popup_edit-profile");
 const popupEditCloseButtonElement = popupEditElement.querySelector(
   ".popup__close-button"
@@ -22,24 +42,25 @@ const popupOpenAddButtonElement = document.querySelector(
   ".profile__add-button"
 );
 const popupAddFormElement = popupAddElement.querySelector(".form");
-const cardNameInput = popupAddFormElement.querySelector(".form__item_card_name");
-const cardImageInput = popupAddFormElement.querySelector(".form__item_card_image");
+const cardNameInput = popupAddFormElement.querySelector(
+  ".form__item_card_name"
+);
+const cardImageInput = popupAddFormElement.querySelector(
+  ".form__item_card_image"
+);
 const popupOpenImage = document.querySelector(".popup_open-image");
-const popupImage = popupOpenImage.querySelector(".popup__image");
-const popupCaption = popupOpenImage.querySelector(".popup__caption");
 const popupImageCloseButton = popupOpenImage.querySelector(
   ".popup__close-button"
 );
 const photoGrid = document.querySelector(".photo-grid");
 const template = document.querySelector("#template-card");
 
-
-function closePopupByEscButton (event) {
-  const openedPopup = document.querySelector('.popup_opened');
+function closePopupByEscButton(event) {
+  const openedPopup = document.querySelector(".popup_opened");
   if (event.key === "Escape") {
     removeVisibility(openedPopup);
   }
-};
+}
 
 const removeVisibility = function (popupElement) {
   popupElement.classList.remove("popup_opened");
@@ -51,8 +72,13 @@ const addVisibility = function (popupElement) {
   document.addEventListener("keydown", closePopupByEscButton);
 };
 
-const handleLikeButtonKlick = function (button) {
-  button.classList.toggle("photo-grid__heart-button_active");
+const attachCardData = function (popupElement, card) {
+  const popupImage = popupElement.querySelector(".popup__image");
+  const popupCaption = popupElement.querySelector(".popup__caption");
+  popupElement.classList.add("popup_opened");
+  popupImage.src = card.link;
+  popupCaption.textContent = card.name;
+  popupImage.alt = card.name;
 };
 
 function handleEditFormSubmit(evt) {
@@ -62,37 +88,14 @@ function handleEditFormSubmit(evt) {
   removeVisibility(popupEditElement);
 }
 
-const removeElement = function (element) {
-  element.remove();
-};
-
-const createCard = (cardData) => {
-  const card = template.content
-    .querySelector(".photo-grid__card")
-    .cloneNode(true);
-  const cardPic = card.querySelector(".photo-grid__image");
-  card.querySelector(".photo-grid__text").textContent = cardData.name;
-  cardPic.src = cardData.link;
-  cardPic.alt = cardData.name;
-
-  const likeButton = card.querySelector(".photo-grid__heart-button");
-  likeButton.addEventListener("click", () => handleLikeButtonKlick(likeButton));
-
-  const deleteButton = card.querySelector(".photo-grid__card_delete-button");
-  deleteButton.addEventListener("click", () => removeElement(card));
-
-  cardPic.addEventListener("click", () => {
-    addVisibility(popupOpenImage);
-    popupImage.src = cardData.link;
-    popupCaption.textContent = cardData.name;
-    popupImage.alt = cardData.name;
-  });
-
-  return card;
-};
-
 const renderCard = (cardData, cardsContainer) => {
-  cardsContainer.prepend(createCard(cardData));
+  const newCard = new Card(cardData, template);
+  cardsContainer.prepend(
+    newCard.createCard((card) => {
+      attachCardData(popupOpenImage, card);
+      addVisibility(popupOpenImage);
+    })
+  );
 };
 
 const renderCards = (container, cards) => {
@@ -107,10 +110,10 @@ function handleAddFormSubmit(evt) {
   evt.preventDefault();
   const cardName = cardNameInput.value;
   const cardImage = cardImageInput.value;
-  renderCard({name: cardName, link: cardImage}, photoGrid);
+  renderCard({ name: cardName, link: cardImage }, photoGrid);
   removeVisibility(popupAddElement);
   evt.target.reset();
-  evt.submitter.classList.add('form__submit-button_disabled');
+  evt.submitter.classList.add("form__submit-button_disabled");
   evt.submitter.disabled = true;
 }
 
