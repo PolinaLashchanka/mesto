@@ -1,13 +1,17 @@
 class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, onClickHandler) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._onClickHandler = onClickHandler;
   }
 
   _generateCard() {
-    return document.querySelector(this._templateSelector).content.querySelector(".photo-grid__card") .cloneNode(true);
-}
+    return document
+      .querySelector(this._templateSelector)
+      .content.querySelector(".photo-grid__card")
+      .cloneNode(true);
+  }
 
   _handleLikeButtonKlick() {
     this._likeButton.classList.toggle("photo-grid__heart-button_active");
@@ -18,11 +22,18 @@ class Card {
   }
 
   _addEventListeners() {
-    this._likeButton.addEventListener("click", () => this._handleLikeButtonKlick());
-    this._deleteButton.addEventListener("click", () => this._removeElement(this._card));
+    this._likeButton.addEventListener("click", () =>
+      this._handleLikeButtonKlick()
+    );
+    this._deleteButton.addEventListener("click", () =>
+      this._removeElement(this._card)
+    );
+    this._cardPic.addEventListener("click", () =>
+      this._onClickHandler({ link: this._link, name: this._name })
+    );
   }
 
-  createCard(onClickHandler) {
+  createCard() {
     this._card = this._generateCard();
     this._cardPic = this._card.querySelector(".photo-grid__image");
     this._card.querySelector(".photo-grid__text").textContent = this._name;
@@ -34,7 +45,6 @@ class Card {
     );
 
     this._addEventListeners();
-    this._cardPic.addEventListener("click", () => onClickHandler({ link: this._link, name: this._name }));
 
     return this._card;
   }

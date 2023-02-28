@@ -2,19 +2,24 @@ import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import { initialCards, formValidationConfig } from "./constants.js";
 
-
 const editForm = document.querySelector(".popup__edit-form");
 const addForm = document.querySelector(".popup__add-form");
-const editSubmitButton = editForm.querySelector('.form__submit-button');
-const addSubmitButton = addForm.querySelector('.form__submit-button');
+const editSubmitButton = editForm.querySelector(".form__submit-button");
+const addSubmitButton = addForm.querySelector(".form__submit-button");
 
-
-const newEditForm = new FormValidator(formValidationConfig, editForm, editSubmitButton);
-const newAddForm = new FormValidator(formValidationConfig, addForm, addSubmitButton);
+const newEditForm = new FormValidator(
+  formValidationConfig,
+  editForm,
+  editSubmitButton
+);
+const newAddForm = new FormValidator(
+  formValidationConfig,
+  addForm,
+  addSubmitButton
+);
 
 newEditForm.enableValidation();
 newAddForm.enableValidation();
-
 
 const popupEditElement = document.querySelector(".popup_edit-profile");
 const popupEditCloseButtonElement = popupEditElement.querySelector(
@@ -52,9 +57,10 @@ const popupImageCloseButton = popupOpenImage.querySelector(
 );
 const photoGrid = document.querySelector(".photo-grid");
 
+
 function closePopupByEscButton(event) {
-  const openedPopup = document.querySelector(".popup_opened");
   if (event.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_opened");
     removeVisibility(openedPopup);
   }
 }
@@ -86,13 +92,11 @@ function handleEditFormSubmit(evt) {
 }
 
 const renderCard = (cardData, cardsContainer) => {
-  const newCard = new Card(cardData, "#template-card");
-  cardsContainer.prepend(
-    newCard.createCard((card) => {
-      attachCardData(popupOpenImage, card);
-      addVisibility(popupOpenImage);
-    })
-  );
+  const newCard = new Card(cardData, "#template-card", (card) => {
+    attachCardData(popupOpenImage, card);
+    addVisibility(popupOpenImage);
+  });
+  cardsContainer.prepend(newCard.createCard());
 };
 
 const renderCards = (container, cards) => {
