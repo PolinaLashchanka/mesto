@@ -5,24 +5,6 @@ class Card {
     this._template = template;
   }
 
-  // _addVisibility() {
-  //   this._popupOpenImage = document.querySelector(".popup_open-image");
-  //   this._popupImage = this._popupOpenImage.querySelector(".popup__image");
-  //   this._popupCaption = this._popupOpenImage.querySelector(".popup__caption");
-  //   this._popupOpenImage.classList.add("popup_opened");
-  //   this._popupImage.src = this._link;
-  //   this._popupCaption.textContent = this._name;
-  //   this._popupImage.alt = this._name;
-  //   document.addEventListener("keydown", (event) => this._closePopupByEscButton(event));
-  // }
-
-  // _removeVisibility(popupElement) {
-  //   popupElement.classList.remove("popup_opened");
-  //   document.removeEventListener("keydown", (event) =>
-  //     this._closePopupByEscButton(event)
-  //   );
-  // }
-
   _handleLikeButtonKlick() {
     this._likeButton.classList.toggle("photo-grid__heart-button_active");
   }
