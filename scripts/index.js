@@ -1,21 +1,19 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import initialCards from "./constants.js";
+import { initialCards, formValidationConfig } from "./constants.js";
 
-const formValidationConfig = {
-  formSelector: ".form",
-  inputSelector: ".form__item",
-  errorClass: "popup__error_visible",
-  submitButtonSelector: ".form__submit-button",
-  inactiveButtonClass: "form__submit-button_disabled",
-  inputErrorClass: "form__item_type_error",
-};
 
 const editForm = document.querySelector(".popup__edit-form");
 const addForm = document.querySelector(".popup__add-form");
+const editSubmitButton = editForm.querySelector('.form__submit-button');
+const addSubmitButton = addForm.querySelector('.form__submit-button');
 
-new FormValidator(formValidationConfig, editForm).enableValidation();
-new FormValidator(formValidationConfig, addForm).enableValidation();
+
+const newEditForm = new FormValidator(formValidationConfig, editForm, editSubmitButton);
+const newAddForm = new FormValidator(formValidationConfig, addForm, addSubmitButton);
+
+newEditForm.enableValidation();
+newAddForm.enableValidation();
 
 
 const popupEditElement = document.querySelector(".popup_edit-profile");
@@ -113,8 +111,7 @@ function handleAddFormSubmit(evt) {
   renderCard({ name: cardName, link: cardImage }, photoGrid);
   removeVisibility(popupAddElement);
   evt.target.reset();
-  evt.submitter.classList.add("form__submit-button_disabled");
-  evt.submitter.disabled = true;
+  newAddForm.toggleButton();
 }
 
 function closePopupByClickOnOverlay(event) {

@@ -1,18 +1,19 @@
 class FormValidator {
-    constructor(config, form) {
+    constructor(config, form, button) {
         this._config = config;
         this._form = form;
+        this._button = button;
     }
 
     _disableSubmit(event) {
         event.preventDefault();
       }
 
-    _toggleButton(form, submitButton, config) {
-        const isFormValid = form.checkValidity();
+    toggleButton() {
+        const isFormValid = this._form.checkValidity();
       
-        submitButton.disabled = !isFormValid;
-        submitButton.classList.toggle(config.inactiveButtonClass, !isFormValid);
+        this._button.disabled = !isFormValid;
+        this._button.classList.toggle(this._config.inactiveButtonClass, !isFormValid);
       };
 
     _validateFormInput(event) {
@@ -34,15 +35,12 @@ class FormValidator {
     _addInputListeners() {
         this._form.addEventListener("input", (event) => {
             this._validateFormInput(event);
+            this.toggleButton();
           });
       }
 
     _enableFormValidation() {
-        const submitButton = this._form.querySelector(this._config.submitButtonSelector);
         this._form.addEventListener("submit", this._disableSubmit);
-        this._form.addEventListener("input", () => {
-          this._toggleButton(this._form, submitButton, this._config);
-        });
     
         this._addInputListeners();
     }

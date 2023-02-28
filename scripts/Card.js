@@ -13,14 +13,6 @@ class Card {
     element.remove();
   }
 
-  _closePopupByEscButton(event) {
-    const openedPopup = document.querySelector(".popup_opened");
-    console.log(openedPopup);
-    if (event.key === "Escape") {
-      this._removeVisibility(openedPopup);
-    }
-  }
-
   _addEventListeners() {
     this._likeButton.addEventListener("click", () => this._handleLikeButtonKlick());
     this._deleteButton.addEventListener("click", () => this._removeElement(this._card));
