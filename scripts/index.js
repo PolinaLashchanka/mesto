@@ -51,7 +51,6 @@ const popupImageCloseButton = popupOpenImage.querySelector(
   ".popup__close-button"
 );
 const photoGrid = document.querySelector(".photo-grid");
-const template = document.querySelector("#template-card");
 
 function closePopupByEscButton(event) {
   const openedPopup = document.querySelector(".popup_opened");
@@ -87,7 +86,7 @@ function handleEditFormSubmit(evt) {
 }
 
 const renderCard = (cardData, cardsContainer) => {
-  const newCard = new Card(cardData, template);
+  const newCard = new Card(cardData, "#template-card");
   cardsContainer.prepend(
     newCard.createCard((card) => {
       attachCardData(popupOpenImage, card);

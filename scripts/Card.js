@@ -1,9 +1,13 @@
 class Card {
-  constructor(data, template) {
+  constructor(data, templateSelector) {
     this._name = data.name;
     this._link = data.link;
-    this._template = template;
+    this._templateSelector = templateSelector;
   }
+
+  _generateCard() {
+    return document.querySelector(this._templateSelector).content.querySelector(".photo-grid__card") .cloneNode(true);
+}
 
   _handleLikeButtonKlick() {
     this._likeButton.classList.toggle("photo-grid__heart-button_active");
@@ -19,9 +23,7 @@ class Card {
   }
 
   createCard(onClickHandler) {
-    this._card = this._template.content
-      .querySelector(".photo-grid__card")
-      .cloneNode(true);
+    this._card = this._generateCard();
     this._cardPic = this._card.querySelector(".photo-grid__image");
     this._card.querySelector(".photo-grid__text").textContent = this._name;
     this._cardPic.src = this._link;
