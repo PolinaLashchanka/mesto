@@ -4,22 +4,18 @@ import { initialCards, formValidationConfig } from "./constants.js";
 
 const editForm = document.querySelector(".popup__edit-form");
 const addForm = document.querySelector(".popup__add-form");
-const editSubmitButton = editForm.querySelector(".form__submit-button");
-const addSubmitButton = addForm.querySelector(".form__submit-button");
 
-const newEditForm = new FormValidator(
+const editFormValidator = new FormValidator(
   formValidationConfig,
-  editForm,
-  editSubmitButton
+  editForm
 );
-const newAddForm = new FormValidator(
+const addFormValidator = new FormValidator(
   formValidationConfig,
-  addForm,
-  addSubmitButton
+  addForm
 );
 
-newEditForm.enableValidation();
-newAddForm.enableValidation();
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
 
 const popupEditElement = document.querySelector(".popup_edit-profile");
 const popupEditCloseButtonElement = popupEditElement.querySelector(
@@ -114,7 +110,7 @@ function handleAddFormSubmit(evt) {
   renderCard({ name: cardName, link: cardImage }, photoGrid);
   removeVisibility(popupAddElement);
   evt.target.reset();
-  newAddForm.toggleButton();
+  addFormValidator.toggleButton();
 }
 
 function closePopupByClickOnOverlay(event) {
