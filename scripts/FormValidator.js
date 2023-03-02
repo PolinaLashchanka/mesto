@@ -2,7 +2,7 @@ class FormValidator {
     constructor(config, form) {
         this._config = config;
         this._form = form;
-        this._button = this._form.querySelector(".form__submit-button");
+        this._button = this._form.querySelector(this._config.submitButtonSelector); 
     }
 
     _disableSubmit(event) {
