@@ -1,9 +1,9 @@
 class Card {
-  constructor(data, templateSelector, onClickHandler) {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
-    this._onClickHandler = onClickHandler;
+    this._handleCardClick = handleCardClick;
   }
 
   _generateCard() {
@@ -29,7 +29,7 @@ class Card {
       this._removeElement(this._card)
     );
     this._cardPic.addEventListener("click", () =>
-      this._onClickHandler({ link: this._link, name: this._name })
+      this._handleCardClick({ link: this._link, name: this._name })
     );
   }
 
