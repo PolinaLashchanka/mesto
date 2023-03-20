@@ -1,10 +1,12 @@
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
-import { initialCards, formValidationConfig } from "./constants.js";
-import Section from "./Section.js";
-import PopupWithImage from "./PopupWithImage.js";
-import PopupWithForm from "./PopupWithForm.js";
-import UserInfo from "./UserInfo.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import { initialCards, formValidationConfig } from "../components/constants.js";
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
+
+import './index.css'; 
 
 const editForm = document.querySelector(".popup__edit-form");
 const addForm = document.querySelector(".popup__add-form");
@@ -28,9 +30,7 @@ const popupOpenAddButtonElement = document.querySelector(
   ".profile__add-button"
 );
 
-function attachCardData(popup, card) {
-  popup.open(card);
-}
+
 
 function handleEditFormSubmit(userData) {
   userInfo.setUserInfo(userData);
@@ -52,6 +52,10 @@ const userInfo = new UserInfo({
   name: ".profile__name",
   description: ".profile__description",
 });
+
+function attachCardData(popup, card) {
+  popup.open(card);
+}
 
 function cardRenderer(cardData) {
   const newCard = new Card(cardData, "#template-card", (card) => {
