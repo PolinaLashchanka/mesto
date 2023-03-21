@@ -1,12 +1,12 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import { initialCards, formValidationConfig } from "../components/constants.js";
+import { initialCards, formValidationConfig } from "../utils/constants.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 
-import './index.css'; 
+import "./index.css";
 
 const editForm = document.querySelector(".popup__edit-form");
 const addForm = document.querySelector(".popup__add-form");
@@ -17,20 +17,12 @@ const addFormValidator = new FormValidator(formValidationConfig, addForm);
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
-const popupEditElement = document.querySelector(".popup_edit-profile");
 const popupOpenEditButtonElement = document.querySelector(
   ".profile__edit-button"
-);
-const popupEditFormElement = popupEditElement.querySelector(".form");
-const nameInput = popupEditFormElement.querySelector(".form__item_user_name");
-const descriptionInput = popupEditFormElement.querySelector(
-  ".form__item_user_description"
 );
 const popupOpenAddButtonElement = document.querySelector(
   ".profile__add-button"
 );
-
-
 
 function handleEditFormSubmit(userData) {
   userInfo.setUserInfo(userData);
@@ -81,8 +73,7 @@ function handleAddFormSubmit({ cardName, cardImage }) {
 popupOpenEditButtonElement.addEventListener("click", (ev) => {
   editPopup.open();
   const userData = userInfo.getUserInfo();
-  nameInput.value = userData.name;
-  descriptionInput.value = userData.description;
+  editPopup.setInputValues(userData);
   ev.stopPropagation();
 });
 
