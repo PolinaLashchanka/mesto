@@ -18,13 +18,22 @@
       <main class="content">
         <section class="profile">
           <div class="profile__info">
-            <img
-              class="profile__avatar"
-              src="images/Avatar.4a7e0f840d29eee07dcc.jpg"
-              alt="фотография пользователя"
-            />
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <p class="profile__description">Исследователь океана</p>
+            <div class="profile__avatar">
+              <img
+                class="profile__avatar_image"
+                src=""
+                alt="фотография пользователя"
+              />
+              <div class="profile__avatar_edit">
+                <button
+                  class="button profile__avatar_edit-button"
+                  type="button"
+                  aria-label="Редактировать"
+                ></button>
+              </div>
+            </div>
+            <h1 class="profile__name"></h1>
+            <p class="profile__description"></p>
             <button
               class="button profile__edit-button"
               type="button"
@@ -129,6 +138,45 @@
           ></button>
         </div>
       </div>
+      <div class="popup popup_delete-card">
+        <div class="popup__delete-container">
+          <h2 class="popup__title">Вы уверены?</h2>
+          <button class="button popup__submit-button">Да</button>
+          <button
+            class="button popup__close-button"
+            type="button"
+            aria-label="Закрыть"
+          ></button>
+        </div>
+      </div>
+      <div class="popup popup_edit-avatar">
+        <div class="popup__avatar-container">
+          <h2 class="popup__title">Обновить аватар</h2>
+          <form
+            class="form popup__edit-avatar-form"
+            name="userAvatar"
+            novalidate
+          >
+            <input
+              id="input-avatar-link"
+              class="form__item form__item_user_avatar"
+              type="url"
+              name="avatarLink"
+              placeholder="Ссылка на аватар"
+              required
+            />
+            <span id="input-avatar-link-error" class="popup__error"></span>
+            <button class="button form__submit-button" type="submit">
+              Сохранить
+            </button>
+          </form>
+          <button
+            class="button popup__close-button"
+            type="button"
+            aria-label="Закрыть"
+          ></button>
+        </div>
+      </div>
     </div>
     <template id="template-card">
       <div class="photo-grid__card">
@@ -140,11 +188,14 @@
         ></button>
         <div class="photo-grid__caption">
           <h2 class="photo-grid__text"></h2>
-          <button
-            class="button photo-grid__heart-button"
-            type="button"
-            aria-label="Лайк"
-          ></button>
+          <div class="photo-grid__heart-section">
+            <button
+              class="button photo-grid__heart-button"
+              type="button"
+              aria-label="Лайк"
+            ></button>
+            <h5 class="photo-grid__heart-count"></h5>
+          </div>
         </div>
       </div>
     </template>
