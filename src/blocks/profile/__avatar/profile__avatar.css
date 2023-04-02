@@ -3,14 +3,14 @@
     grid-column-start: 2;
     width: 120px;
     height: 120px;
-    position: relative
+    position: relative;
 }
 
-.profile__avatar:hover .profile__avatar_image {
+.profile__avatar:hover .profile__avatar-image {
     opacity: 0.2;
   }
   
-.profile__avatar:hover .profile__avatar_edit {
+.profile__avatar:hover .profile__avatar-edit {
     opacity: 1;
   }
 

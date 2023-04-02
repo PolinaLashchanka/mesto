@@ -32,7 +32,7 @@ const popupOpenAddButtonElement = document.querySelector(
 );
 
 const popupOpenEditAvatarButtonElement = document.querySelector(
-  ".profile__avatar_edit-button"
+  ".profile__avatar-edit-button"
 );
 
 const api = new Api({
@@ -88,7 +88,7 @@ editAvatarPopup.setEventListeners();
 const userInfo = new UserInfo({
   name: ".profile__name",
   description: ".profile__description",
-  avatar: ".profile__avatar_image",
+  avatar: ".profile__avatar-image",
 });
 
 const section = new Section({ renderer: cardRenderer }, ".photo-grid");
