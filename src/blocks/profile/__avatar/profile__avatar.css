@@ -1,12 +1,18 @@
 .profile__avatar {
     margin: 41px auto 18px;
-    border-radius: 50%;
     grid-column-start: 2;
     width: 120px;
     height: 120px;
-    object-fit: cover;
-    object-position: top;
+    position: relative
 }
+
+.profile__avatar:hover .profile__avatar_image {
+    opacity: 0.2;
+  }
+  
+.profile__avatar:hover .profile__avatar_edit {
+    opacity: 1;
+  }
 
 @media screen and (min-width: 1080px) {
     .profile__avatar {
