@@ -13,8 +13,8 @@ export default class PopupWithDeleteButton extends Popup {
     this._submitButton.addEventListener("click", () => {
         this._api.deleteCard(this._id).then(() => {
           this._card.remove();
+          this.close();
         }).catch((err) => console.log(err));
-        this.close();
     }
       
     );

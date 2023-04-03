@@ -5,7 +5,6 @@ class Card {
     this._link = data.link;
     this._owner = data.owner;
     this._cardId = data._id;
-    this._likesCount = data.likes.length;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleCardRemove = handleCardRemove;
@@ -23,17 +22,15 @@ class Card {
     if (
       this._likeButton.classList.contains("photo-grid__heart-button_active")
     ) {
-      this._api.deleteLike(this._cardId).then(() => {
+      this._api.deleteLike(this._cardId).then((res) => {
         this._likeButton.classList.remove("photo-grid__heart-button_active");
-        this._likesCount -= 1;
-        this._likeCount.textContent = this._likesCount;
-      });
+        this._likeCount.textContent = res.likes.length;
+      }).catch((err) => console.log(err));
     } else {
-      this._api.putLike(this._cardId).then(() => {
+      this._api.putLike(this._cardId).then((res) => {
         this._likeButton.classList.add("photo-grid__heart-button_active");
-        this._likesCount += 1;
-        this._likeCount.textContent = this._likesCount;
-      });
+        this._likeCount.textContent = res.likes.length;
+      }).catch((err) => console.log(err));
     }
   }
 
@@ -58,7 +55,7 @@ class Card {
     this._likeSection = this._card.querySelector(".photo-grid__heart-section");
     this._likeButton = this._likeSection.querySelector(".photo-grid__heart-button");
     this._likeCount = this._likeSection.querySelector(".photo-grid__heart-count");
-    this._likeCount.textContent = this._likesCount;
+    this._likeCount.textContent = this._data.likes.length;
     this._deleteButton = this._card.querySelector(
       ".photo-grid__card_delete-button"
     );

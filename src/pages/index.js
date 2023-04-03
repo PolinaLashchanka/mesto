@@ -44,27 +44,21 @@ const api = new Api({
 });
 
 function handleEditFormSubmit(userData) {
-  editPopup.renderSubmiting(true);
-  api
+  return api
     .editProfile({ name: userData.userName, about: userData.userDescription })
     .then((res) => {
       userInfo.setUserInfo(res);
-      editPopup.close();
     })
     .catch((err) => console.log(err))
-    .finally(() => editPopup.renderSubmiting(false));
 }
 
 function handleEditAvatarFormSubmit(userData) {
-  editAvatarPopup.renderSubmiting(true);
-  api
+  return api
     .editAvatar({ avatar: userData.avatarLink })
     .then((res) => {
       userInfo.setUserInfo(res);
-      editAvatarPopup.close();
     })
     .catch((err) => console.log(err))
-    .finally(()=> editAvatarPopup.renderSubmiting(false));
 }
 
 const imgPopup = new PopupWithImage(".popup_open-image");
@@ -113,16 +107,13 @@ function cardRenderer(cardData) {
 }
 
 function handleAddFormSubmit({ cardName, cardImage }) {
-  addPopup.renderSubmiting(true);
-  api
+  return api
     .addNewCard({ name: cardName, link: cardImage })
     .then((res) => {
       section.addItem(cardRenderer(res));
-      addPopup.close();
       addFormValidator.toggleButton();
     })
     .catch((err) => console.log(err))
-    .finally(() => addPopup.renderSubmiting(false));
 }
 
 popupOpenEditButtonElement.addEventListener("click", (ev) => {
@@ -138,14 +129,10 @@ popupOpenEditAvatarButtonElement.addEventListener("click", () =>
   editAvatarPopup.open()
 );
 
-api
-  .getInitialCards()
-  .then((data) => {
-    section.renderItems(data.reverse());
-  })
-  .catch((err) => console.log(err));
 
-api
-  .getUserInfo()
-  .then((res) => userInfo.setUserInfo(res))
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo(userData);
+    section.renderItems(cards.reverse());
+  })
   .catch((err) => console.log(err));

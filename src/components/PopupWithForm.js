@@ -24,23 +24,40 @@ export default class PopupWithForm extends Popup {
     });
   }
 
+  // setEventListeners() {
+  //   super.setEventListeners();
+  //   this._form.addEventListener("submit", () =>
+  //     this._handleFormSubmit(this._getInputValues())
+  //   );
+  // }
+
   setEventListeners() {
     super.setEventListeners();
-    this._form.addEventListener("submit", () =>
+    
+    this._form.addEventListener('submit', () => {
+      const initialText = this._button.textContent;
+      this._button.textContent = 'Сохранение...';
       this._handleFormSubmit(this._getInputValues())
-    );
+        .then(() => this.close()) // закрывается попап в `then`
+        .finally(() => {
+          this._button.textContent = initialText;
+        })
+    });
   }
+
+
+
 
   close() {
     this._form.reset();
     super.close();
   }
 
-  renderSubmiting(isSubmiting) {
-    if (isSubmiting) {
-      this._button.textContent = "Сохранить...";
-    } else {
-      this._button.textContent = "Сохранить";
-    }
-  }
+  // renderSubmiting(isSubmiting) {
+  //   if (isSubmiting) {
+  //     this._button.textContent = "Сохранить...";
+  //   } else {
+  //     this._button.textContent = "Сохранить";
+  //   }
+  // }
 }
