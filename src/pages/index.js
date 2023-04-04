@@ -49,7 +49,7 @@ function handleEditFormSubmit(userData) {
     .then((res) => {
       userInfo.setUserInfo(res);
     })
-    .catch((err) => console.log(err))
+    .catch((err) => console.log(err));
 }
 
 function handleEditAvatarFormSubmit(userData) {
@@ -57,8 +57,10 @@ function handleEditAvatarFormSubmit(userData) {
     .editAvatar({ avatar: userData.avatarLink })
     .then((res) => {
       userInfo.setUserInfo(res);
+      editAvatarPopup.close();
+      editAvatarFormValidator.toggleButton();
     })
-    .catch((err) => console.log(err))
+    .catch((err) => console.log(err));
 }
 
 const imgPopup = new PopupWithImage(".popup_open-image");
@@ -111,9 +113,10 @@ function handleAddFormSubmit({ cardName, cardImage }) {
     .addNewCard({ name: cardName, link: cardImage })
     .then((res) => {
       section.addItem(cardRenderer(res));
+      addPopup.close();
       addFormValidator.toggleButton();
     })
-    .catch((err) => console.log(err))
+    .catch((err) => console.log(err));
 }
 
 popupOpenEditButtonElement.addEventListener("click", (ev) => {
@@ -128,7 +131,6 @@ popupOpenAddButtonElement.addEventListener("click", () => addPopup.open());
 popupOpenEditAvatarButtonElement.addEventListener("click", () =>
   editAvatarPopup.open()
 );
-
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, cards]) => {
