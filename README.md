@@ -1,11 +1,18 @@
-# Проект: MESTO
----
+# MESTO
+### My third project created during Ya.Practicum course "WEB developer"
+##### This is a single page application, where you can create your own account, post information about yourself and add photos.
+##### When you click the button next to the user name, a form for editing information about the user will open.
+#### Technological stack
+- HTML5
+- CSS3
+- Figma
+#### Installation:
+```bash
+git clone git@github.com:PolinaLashchanka/mesto.git
 
-## Мой третий проект, созданный на курсе `Яндекс Практикум "ВЕб-разработчик с нуля"`
-***
-### Это одностраничный сайт для размещения фотографий. Любой пользователь может создать свой аккаунт, размещать туда информацию о себе и фотографии различной тематики с подписью.
-### При клике на кнопку возле имени пользователя откроется форма редактирования информации о пользователе.
-***
-### Технологии, используемые при создании сайта - `HTML5, CSS3, Figma, JavaScript`
-***
-##### *[Здесь](https://polinalashchanka.github.io/mesto/) вы найдете ссылку на финальную версию моего проекта.*
+npm install
+npm run dev
+```
+##### Plans for improvement: 
+- re-implement using React
+##### *[Here](https://polinalashchanka.github.io/react-mesto-auth/) you will find a link to final version of this project*
